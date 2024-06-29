@@ -160,7 +160,7 @@ namespace GUI
                 btnThem.Enabled = false;
                 btnSua.Enabled = false;
                 btnXoa.Enabled = false;
-                btnLamMoi.Enabled = false;
+                btnLamMoi.Enabled = true;
                 btnTimKiem.Enabled = true;
             }
             else if (currentUser.AccountType == "Quản trị viên")

@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBaseConnection.cs" />
+    <Compile Include="DeTaiDAL.cs" />
+    <Compile Include="GiangVienDAL.cs" />
     <Compile Include="KhoaDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AccountDAL.cs" />

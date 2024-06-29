@@ -15,7 +15,6 @@ namespace GUI
     public partial class Khoa : Form
     {
         private KhoaBLL khoaBLL;
-
         private AccountDTO currentUser;
 
         public Khoa(AccountDTO user)

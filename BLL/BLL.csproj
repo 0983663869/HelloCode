@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeTaiBLL.cs" />
+    <Compile Include="GiangVienBLL.cs" />
     <Compile Include="KhoaBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AccountBLL.cs" />

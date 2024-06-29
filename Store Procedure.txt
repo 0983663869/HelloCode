@@ -1,4 +1,86 @@
--- Chức năng tìm kiếm SinhVien --
+======   Code Bài Tập Lớn:   ======
+CREATE DATABASE QuanLyDeTai;
+GO
+USE QuanLyDeTai;
+GO
+
+-- Tạo bảng Account
+CREATE TABLE Account (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    email VARCHAR(30) NULL,
+    username VARCHAR(30) NULL,
+    password VARCHAR(30) NULL,
+	accounttype nvarchar(40) NULL,
+    date_created DATE NULL
+);
+GO
+
+-- Tạo bảng GiangVien
+CREATE TABLE GiangVien (
+    MaGV CHAR(10) PRIMARY KEY,
+    TenGV NVARCHAR(50) NULL,
+    DienThoai CHAR(11) NULL,
+    Email CHAR(30) NULL,
+    NoiCongTac NVARCHAR(100) NULL
+);
+GO
+
+-- Tạo bảng Khoa
+CREATE TABLE Khoa (
+    MaKhoa CHAR(10) PRIMARY KEY,
+    TenKhoa NVARCHAR(50) NULL
+);
+GO
+
+-- Tạo bảng SinhVien 
+CREATE TABLE SinhVien (
+    MaSV CHAR(10) PRIMARY KEY,
+    TenSV NVARCHAR(50) NULL,
+    DienThoai CHAR(11) NULL,
+    Email CHAR(30) NULL,
+    Lop NVARCHAR(10) NULL,
+    MaKhoa CHAR(10) NULL,
+    FOREIGN KEY (MaKhoa) REFERENCES Khoa(MaKhoa)
+);
+GO
+
+-- Tạo bảng DeTai 
+CREATE TABLE DeTai (
+    MaDT CHAR(10) PRIMARY KEY,
+    TenDT NVARCHAR(100) NULL,
+    MaGV CHAR(10) NULL,
+    MaSV CHAR(10) NULL,
+    Diem FLOAT NULL,
+    TrangThai BIT NULL,
+    XepLoai NVARCHAR(20) NULL,
+    FOREIGN KEY (MaGV) REFERENCES GiangVien(MaGV),
+    FOREIGN KEY (MaSV) REFERENCES SinhVien(MaSV),
+    CHECK (TrangThai = 0 OR (TrangThai = 1 AND Diem IS NOT NULL AND XepLoai IS NOT NULL)),
+    CHECK (TrangThai = 1 OR (TrangThai = 0 AND Diem IS NULL AND XepLoai IS NULL))
+);
+GO
+
+-- Tạo trigger để kiểm tra và ràng buộc logic
+CREATE TRIGGER trg_CheckDeTai
+ON DeTai
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    IF EXISTS (
+        SELECT 1
+        FROM inserted
+        WHERE (TrangThai = 0 AND (Diem IS NOT NULL OR XepLoai IS NOT NULL)) OR
+              (TrangThai = 1 AND (Diem IS NULL OR XepLoai IS NULL))
+    )
+    BEGIN
+        RAISERROR ('Invalid data: When TrangThai is 0, Diem and XepLoai must be NULL. When TrangThai is 1, Diem and XepLoai must not be NULL.', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+END;
+GO
+====== Code Store ProceDure: ======
+
+1. -- Chức năng tìm kiếm SinhVien --
 CREATE PROCEDURE SearchSinhVien
     @MaSV CHAR(10) = NULL,
     @TenSV NVARCHAR(50) = NULL,
@@ -19,7 +101,7 @@ BEGIN
 END
 GO
 
--- Chức năng tìm kiếm Khoa --
+2. -- Chức năng tìm kiếm Khoa --
 CREATE PROCEDURE SearchKhoa
     @MaKhoa CHAR(10) = NULL,
     @TenKhoa NVARCHAR(50) = NULL
@@ -31,3 +113,48 @@ BEGIN
       AND (@TenKhoa IS NULL OR TenKhoa LIKE '%' + @TenKhoa + '%');
 END
 GO
+
+3. -- Chức năng tìm kiếm Giảng Viên --
+CREATE PROCEDURE SearchGiangVien
+    @MaGV CHAR(10) = NULL,
+    @TenGV NVARCHAR(50) = NULL,
+    @DienThoai CHAR(11) = NULL,
+    @Email CHAR(30) = NULL
+AS
+BEGIN
+    SELECT *
+    FROM GiangVien
+    WHERE (@MaGV IS NULL OR MaGV = @MaGV)
+      AND (@TenGV IS NULL OR TenGV LIKE '%' + @TenGV + '%')
+      AND (@DienThoai IS NULL OR DienThoai LIKE '%' + @DienThoai + '%')
+      AND (@Email IS NULL OR Email LIKE '%' + @Email + '%');
+END
+GO
+
+4. -- Chức năng tìm kiếm Đề Tài --
+CREATE PROCEDURE sp_SearchDeTai
+    @MaDT CHAR(10) = NULL,
+    @TenDT NVARCHAR(100) = NULL,
+    @MaGV CHAR(10) = NULL,
+    @MaSV CHAR(10) = NULL
+AS
+BEGIN
+    SELECT * FROM DeTai
+    WHERE (@MaDT IS NULL OR MaDT = @MaDT)
+    AND (@TenDT IS NULL OR TenDT LIKE '%' + @TenDT + '%')
+    AND (@MaGV IS NULL OR MaGV = @MaGV)
+    AND (@MaSV IS NULL OR MaSV = @MaSV)
+END
+
+5. -- Chức năng tìm kiếm Account --
+CREATE PROCEDURE SearchAccount
+    @Email NVARCHAR(50) = NULL,
+    @Username NVARCHAR(50) = NULL,
+    @AccountType NVARCHAR(50) = NULL
+AS
+BEGIN
+    SELECT * FROM Account
+    WHERE (@Email IS NULL OR email LIKE '%' + @Email + '%')
+      AND (@Username IS NULL OR username LIKE '%' + @Username + '%')
+      AND (@AccountType IS NULL OR accounttype = @AccountType);
+END
