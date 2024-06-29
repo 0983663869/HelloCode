@@ -74,23 +74,23 @@
     <Compile Include="Account.Designer.cs">
       <DependentUpon>Account.cs</DependentUpon>
     </Compile>
-    <Compile Include="Faculty.cs">
+    <Compile Include="Khoa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Faculty.Designer.cs">
-      <DependentUpon>Faculty.cs</DependentUpon>
+    <Compile Include="Khoa.Designer.cs">
+      <DependentUpon>Khoa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Lecturer.cs">
+    <Compile Include="GiangVien.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Lecturer.Designer.cs">
-      <DependentUpon>Lecturer.cs</DependentUpon>
+    <Compile Include="GiangVien.Designer.cs">
+      <DependentUpon>GiangVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="DangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
+    <Compile Include="DangNhap.Designer.cs">
+      <DependentUpon>DangNhap.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -100,35 +100,35 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Signup.cs">
+    <Compile Include="DangKy.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Signup.Designer.cs">
-      <DependentUpon>Signup.cs</DependentUpon>
+    <Compile Include="DangKy.Designer.cs">
+      <DependentUpon>DangKy.cs</DependentUpon>
     </Compile>
-    <Compile Include="Student.cs">
+    <Compile Include="SinhVien.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Student.Designer.cs">
-      <DependentUpon>Student.cs</DependentUpon>
+    <Compile Include="SinhVien.Designer.cs">
+      <DependentUpon>SinhVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="Topics.cs">
+    <Compile Include="DeTai.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Topics.Designer.cs">
-      <DependentUpon>Topics.cs</DependentUpon>
+    <Compile Include="DeTai.Designer.cs">
+      <DependentUpon>DeTai.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Account.resx">
       <DependentUpon>Account.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Faculty.resx">
-      <DependentUpon>Faculty.cs</DependentUpon>
+    <EmbeddedResource Include="Khoa.resx">
+      <DependentUpon>Khoa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Lecturer.resx">
-      <DependentUpon>Lecturer.cs</DependentUpon>
+    <EmbeddedResource Include="GiangVien.resx">
+      <DependentUpon>GiangVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
+    <EmbeddedResource Include="DangNhap.resx">
+      <DependentUpon>DangNhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -143,14 +143,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Signup.resx">
-      <DependentUpon>Signup.cs</DependentUpon>
+    <EmbeddedResource Include="DangKy.resx">
+      <DependentUpon>DangKy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Student.resx">
-      <DependentUpon>Student.cs</DependentUpon>
+    <EmbeddedResource Include="SinhVien.resx">
+      <DependentUpon>SinhVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Topics.resx">
-      <DependentUpon>Topics.cs</DependentUpon>
+    <EmbeddedResource Include="DeTai.resx">
+      <DependentUpon>DeTai.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

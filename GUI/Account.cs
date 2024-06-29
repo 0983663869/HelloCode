@@ -31,7 +31,7 @@ namespace GUI
             btnLamMoi.Visible = true;
             btnTimKiem.Visible = true;
 
-/*            if (currentUser.AccountType == "Student" || currentUser.AccountType == "Lecturer")
+/*            if (currentUser.AccountType == "Sinh viên" || currentUser.AccountType == "Giảng viên")
             {
                 // Disable buttons but keep them visible
                 btnThem.Enabled = false;
@@ -42,7 +42,7 @@ namespace GUI
             }
             else 
 */
-            if (currentUser.AccountType == "Admin")
+            if (currentUser.AccountType == "Quản trị viên")
             {
                 // Enable buttons for admin
                 btnThem.Enabled = true;

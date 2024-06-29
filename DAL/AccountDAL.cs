@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using DTO;
 
-// tầng truy cập dữ liệu
+// Tầng truy cập dữ liệu
 namespace DAL
 {
     public class AccountDAL
     {
-        private string connectionString = @"Data Source=NGTMINH\SQLEXPRESS;Initial Catalog=QuanLyDeTai;Integrated Security=True";
+        private readonly DatabaseConnection _dbConnection;
 
-        // Lấy thông tin người dùng từ database dựa trên username và password
+        public AccountDAL()
+        {
+            _dbConnection = new DatabaseConnection();
+        }
+
         public DataTable GetUserByUsernameAndPassword(string username, string password)
         {
-            using (SqlConnection connect = new SqlConnection(connectionString))
+            using (SqlConnection connect = _dbConnection.GetConnection())
             {
                 string selectData = "SELECT * FROM Account WHERE username = @username AND password = @pass";
                 using (SqlCommand cmd = new SqlCommand(selectData, connect))
@@ -33,10 +32,9 @@ namespace DAL
             }
         }
 
-        // Thêm người dùng mới vào database
         public bool InsertUser(AccountDTO user)
         {
-            using (SqlConnection connect = new SqlConnection(connectionString))
+            using (SqlConnection connect = _dbConnection.GetConnection())
             {
                 string insertData = "INSERT INTO Account (email, username, password, accounttype, date_created) VALUES(@mail, @username, @pass, @accounttype, @date)";
                 using (SqlCommand cmd = new SqlCommand(insertData, connect))
@@ -44,7 +42,7 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@mail", user.Email);
                     cmd.Parameters.AddWithValue("@username", user.Username);
                     cmd.Parameters.AddWithValue("@pass", user.Password);
-                    cmd.Parameters.AddWithValue("@accounttype", user.AccountType); // Thêm trường này
+                    cmd.Parameters.AddWithValue("@accounttype", user.AccountType);
                     cmd.Parameters.AddWithValue("@date", user.DateCreated);
 
                     connect.Open();
@@ -53,12 +51,10 @@ namespace DAL
                 }
             }
         }
-    
 
-        // Check username tồn tại 
         public bool CheckUsernameExists(string username)
         {
-            using (SqlConnection connect = new SqlConnection(connectionString))
+            using (SqlConnection connect = _dbConnection.GetConnection())
             {
                 string checkUsername = "SELECT * FROM Account WHERE username = @username";
                 using (SqlCommand cmd = new SqlCommand(checkUsername, connect))
@@ -72,10 +68,9 @@ namespace DAL
             }
         }
 
-        // Check email tồn tại 
         public bool CheckEmailExists(string email)
         {
-            using (SqlConnection connect = new SqlConnection(connectionString))
+            using (SqlConnection connect = _dbConnection.GetConnection())
             {
                 string checkEmail = "SELECT * FROM Account WHERE email = @mail";
                 using (SqlCommand cmd = new SqlCommand(checkEmail, connect))

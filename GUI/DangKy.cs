@@ -13,11 +13,11 @@ using DTO;
 
 namespace GUI
 {
-    public partial class Signup : Form
+    public partial class DangKy : Form
     {
         private AccountBLL userBLL = new AccountBLL();
 
-        public Signup()
+        public DangKy()
         {
             InitializeComponent();
         }
@@ -57,7 +57,7 @@ namespace GUI
 
                 MessageBox.Show("Đăng ký thành công! Bạn có thể đăng nhập vào tài khoản.", "Đăng ký thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                Login lForm = new Login();
+                DangNhap lForm = new DangNhap();
                 lForm.Show();
                 this.Hide();
             }
@@ -69,7 +69,7 @@ namespace GUI
 
         private void signup_loginHere_Click(object sender, EventArgs e)
         {
-            Login lForm = new Login();
+            DangNhap lForm = new DangNhap();
             lForm.Show();
             this.Hide();
         }

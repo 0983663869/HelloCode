@@ -12,11 +12,11 @@ using DTO;
 
 namespace GUI
 {
-    public partial class Login : Form
+    public partial class DangNhap : Form
     {
         private AccountBLL userBLL = new AccountBLL();
 
-        public Login()
+        public DangNhap()
         {
             InitializeComponent();
         }
@@ -54,7 +54,7 @@ namespace GUI
 
         private void login_registerHere_Click(object sender, EventArgs e)
         {
-            Signup sForm = new Signup();
+            DangKy sForm = new DangKy();
             sForm.Show();
             this.Hide();
         }

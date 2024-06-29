@@ -1,0 +1,33 @@
+-- Chức năng tìm kiếm SinhVien --
+CREATE PROCEDURE SearchSinhVien
+    @MaSV CHAR(10) = NULL,
+    @TenSV NVARCHAR(50) = NULL,
+    @DienThoai CHAR(11) = NULL,
+    @Email CHAR(30) = NULL,
+    @Lop NVARCHAR(10) = NULL,
+    @MaKhoa CHAR(10) = NULL
+AS
+BEGIN
+    SELECT * 
+    FROM SinhVien
+    WHERE (@MaSV IS NULL OR MaSV = @MaSV)
+      AND (@TenSV IS NULL OR TenSV LIKE '%' + @TenSV + '%')
+      AND (@DienThoai IS NULL OR DienThoai LIKE '%' + @DienThoai + '%')
+      AND (@Email IS NULL OR Email LIKE '%' + @Email + '%')
+      AND (@Lop IS NULL OR Lop LIKE '%' + @Lop + '%')
+      AND (@MaKhoa IS NULL OR MaKhoa = @MaKhoa);
+END
+GO
+
+-- Chức năng tìm kiếm Khoa --
+CREATE PROCEDURE SearchKhoa
+    @MaKhoa CHAR(10) = NULL,
+    @TenKhoa NVARCHAR(50) = NULL
+AS
+BEGIN
+    SELECT * 
+    FROM Khoa
+    WHERE (@MaKhoa IS NULL OR MaKhoa = @MaKhoa)
+      AND (@TenKhoa IS NULL OR TenKhoa LIKE '%' + @TenKhoa + '%');
+END
+GO

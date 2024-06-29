@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class Signup
+    partial class DangKy
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DangKy));
             this.panel1 = new System.Windows.Forms.Panel();
             this.signup_accounttype = new System.Windows.Forms.ComboBox();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -85,9 +86,9 @@
             this.signup_accounttype.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signup_accounttype.FormattingEnabled = true;
             this.signup_accounttype.Items.AddRange(new object[] {
-            "Student",
-            "Lecturer",
-            "Admin"});
+            "Sinh viên",
+            "Giảng viên",
+            "Quản trị viên"});
             this.signup_accounttype.Location = new System.Drawing.Point(126, 105);
             this.signup_accounttype.Name = "signup_accounttype";
             this.signup_accounttype.Size = new System.Drawing.Size(100, 25);
@@ -294,7 +295,7 @@
             this.iconPictureBox1.TabIndex = 1;
             this.iconPictureBox1.TabStop = false;
             // 
-            // Signup
+            // DangKy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -303,7 +304,8 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Signup";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "DangKy";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);

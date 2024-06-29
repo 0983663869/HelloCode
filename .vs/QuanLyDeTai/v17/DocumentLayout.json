@@ -3,7 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\smtat\\OneDrive\\Desktop\\StudyNg.TuanMinh\\PJ_QuanLyDeTai\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/NGTMINH_SQLEXPRESS/QuanLyDeTai/True/SqlTable/dbo.Account.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{6C9DE415-0E1B-4FDF-AA36-672723984AD0}|BLL\\BLL.csproj|c:\\users\\smtat\\onedrive\\desktop\\studyng.tuanminh\\pj_quanlydetai\\bll\\khoabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C9DE415-0E1B-4FDF-AA36-672723984AD0}|BLL\\BLL.csproj|solutionrelative:bll\\khoabll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC054037-E552-4E5C-BAB6-2377C1056592}|GUI\\GUI.csproj|C:\\Users\\smtat\\OneDrive\\Desktop\\StudyNg.TuanMinh\\PJ_QuanLyDeTai\\gui\\khoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC054037-E552-4E5C-BAB6-2377C1056592}|GUI\\GUI.csproj|solutionrelative:gui\\khoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDD82EE5-F5E7-447D-80B9-B5CB817D665C}|DAL\\DAL.csproj|C:\\Users\\smtat\\OneDrive\\Desktop\\StudyNg.TuanMinh\\PJ_QuanLyDeTai\\dal\\khoadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDD82EE5-F5E7-447D-80B9-B5CB817D665C}|DAL\\DAL.csproj|solutionrelative:dal\\khoadal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC054037-E552-4E5C-BAB6-2377C1056592}|GUI\\GUI.csproj|C:\\Users\\smtat\\OneDrive\\Desktop\\StudyNg.TuanMinh\\PJ_QuanLyDeTai\\gui\\khoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AC054037-E552-4E5C-BAB6-2377C1056592}|GUI\\GUI.csproj|solutionrelative:gui\\khoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -13,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -53,12 +66,53 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "KhoaDAL.cs",
+              "DocumentMoniker": "C:\\Users\\smtat\\OneDrive\\Desktop\\StudyNg.TuanMinh\\PJ_QuanLyDeTai\\DAL\\KhoaDAL.cs",
+              "RelativeDocumentMoniker": "DAL\\KhoaDAL.cs",
+              "ToolTip": "C:\\Users\\smtat\\OneDrive\\Desktop\\StudyNg.TuanMinh\\PJ_QuanLyDeTai\\DAL\\KhoaDAL.cs",
+              "RelativeToolTip": "DAL\\KhoaDAL.cs",
+              "ViewState": "AQIAADwAAAAAAAAAAAAIwEkAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-29T03:05:24.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Khoa.cs",
+              "DocumentMoniker": "C:\\Users\\smtat\\OneDrive\\Desktop\\StudyNg.TuanMinh\\PJ_QuanLyDeTai\\GUI\\Khoa.cs",
+              "RelativeDocumentMoniker": "GUI\\Khoa.cs",
+              "ToolTip": "C:\\Users\\smtat\\OneDrive\\Desktop\\StudyNg.TuanMinh\\PJ_QuanLyDeTai\\GUI\\Khoa.cs",
+              "RelativeToolTip": "GUI\\Khoa.cs",
+              "ViewState": "AQIAAEEAAAAAAAAAAAAAAFEAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-29T03:14:21.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Khoa.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\smtat\\OneDrive\\Desktop\\StudyNg.TuanMinh\\PJ_QuanLyDeTai\\GUI\\Khoa.cs",
+              "RelativeDocumentMoniker": "GUI\\Khoa.cs",
+              "ToolTip": "C:\\Users\\smtat\\OneDrive\\Desktop\\StudyNg.TuanMinh\\PJ_QuanLyDeTai\\GUI\\Khoa.cs [Design]",
+              "RelativeToolTip": "GUI\\Khoa.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-29T03:14:17.095Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "dbo.Account [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/NGTMINH_SQLEXPRESS/QuanLyDeTai/True/SqlTable/dbo.Account.sql",
-              "ToolTip": "dbo.Account [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-06-27T08:12:12.398Z",
+              "Title": "KhoaBLL.cs",
+              "DocumentMoniker": "C:\\Users\\smtat\\OneDrive\\Desktop\\StudyNg.TuanMinh\\PJ_QuanLyDeTai\\BLL\\KhoaBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\KhoaBLL.cs",
+              "ToolTip": "C:\\Users\\smtat\\OneDrive\\Desktop\\StudyNg.TuanMinh\\PJ_QuanLyDeTai\\BLL\\KhoaBLL.cs",
+              "RelativeToolTip": "BLL\\KhoaBLL.cs",
+              "ViewState": "AQIAAE0AAAAAAAAAAAAwwFIAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-29T03:14:55.922Z",
               "EditorCaption": ""
             }
           ]

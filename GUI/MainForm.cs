@@ -155,25 +155,25 @@ namespace GUI
         private void btnSinhVien_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Student(currentUser)); // Mở form Sinh Viên
+            OpenChildForm(new SinhVien(currentUser)); // Mở form Sinh Viên
         }
 
         private void btnGiangVien_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
-            OpenChildForm(new Lecturer(currentUser)); // Mở form Giảng Viên
+            OpenChildForm(new GiangVien(currentUser)); // Mở form Giảng Viên
         }
 
         private void btnDeTai_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
-            OpenChildForm(new Topics(currentUser)); // Mở form Đề Tài
+            OpenChildForm(new DeTai(currentUser)); // Mở form Đề Tài
         }
 
         private void btnKhoa_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color4);
-            OpenChildForm(new Faculty(currentUser)); // Mở form Khoa
+            OpenChildForm(new Khoa(currentUser)); // Mở form Khoa
         }
 
         private void btnTaiKhoan_Click(object sender, EventArgs e)
@@ -227,7 +227,7 @@ namespace GUI
 
             lblWelcome.Text = "Welcome, " + currentUser.Username;
 
-            if (currentUser.AccountType == "Student")
+            if (currentUser.AccountType == "Sinh viên")
             {
                 btnSinhVien.Enabled = true;
                 btnDeTai.Enabled = true;
@@ -237,7 +237,7 @@ namespace GUI
                 btnKhoa.Enabled = false;
                 btnTaiKhoan.Enabled = false;
             }
-            else if (currentUser.AccountType == "Lecturer")
+            else if (currentUser.AccountType == "Giảng viên")
             {
                 btnGiangVien.Enabled = true;
                 btnDeTai.Enabled = true;
@@ -247,7 +247,7 @@ namespace GUI
                 btnKhoa.Enabled = false;
                 btnTaiKhoan.Enabled = false;
             }
-            else if (currentUser.AccountType == "Admin")
+            else if (currentUser.AccountType == "Quản trị viên")
             {
                 btnSinhVien.Enabled = true;
                 btnGiangVien.Enabled = true;
@@ -268,7 +268,7 @@ namespace GUI
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
             this.Close(); // Đóng MainForm
-            Login loginForm = new Login();
+            DangNhap loginForm = new DangNhap();
             loginForm.Show(); // Hiển thị lại form đăng nhập
         }
     }

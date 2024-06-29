@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class Student : Form
+    public partial class GiangVien : Form
     {
         private AccountDTO currentUser;
 
-        public Student(AccountDTO user)
+        public GiangVien(AccountDTO user)
         {
             InitializeComponent();
             currentUser = user;
@@ -31,7 +31,7 @@ namespace GUI
             btnLamMoi.Visible = true;
             btnTimKiem.Visible = true;
 
-            if (currentUser.AccountType == "Student" || currentUser.AccountType == "Lecturer")
+            if (currentUser.AccountType == "Sinh viên" || currentUser.AccountType == "Giảng viên")
             {
                 // Disable buttons but keep them visible
                 btnThem.Enabled = false;
@@ -40,7 +40,7 @@ namespace GUI
                 btnLamMoi.Enabled = false;
                 btnTimKiem.Enabled = true;
             }
-            else if (currentUser.AccountType == "Admin")
+            else if (currentUser.AccountType == "Quản trị viên")
             {
                 // Enable buttons for admin
                 btnThem.Enabled = true;
