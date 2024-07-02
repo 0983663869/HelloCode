@@ -25,6 +25,16 @@ namespace BLL
 
         public void AddKhoa(KhoaDTO khoa)
         {
+            // Kiểm tra các trường bắt buộc không được để trống
+            if (string.IsNullOrWhiteSpace(khoa.MaKhoa))
+            {
+                throw new Exception("Mã khoa không được để trống.");
+            }
+            if (string.IsNullOrWhiteSpace(khoa.TenKhoa))
+            {
+                throw new Exception("Tên khoa không được để trống.");
+            }
+
             // Kiểm tra xem MaKhoa đã tồn tại chưa
             DataTable dt = khoaDAL.SearchKhoa(new KhoaDTO { MaKhoa = khoa.MaKhoa });
             if (dt.Rows.Count > 0)

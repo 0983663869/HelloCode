@@ -91,8 +91,6 @@ namespace DAL
                 da.SelectCommand.Parameters.AddWithValue("@TenDT", (object)deTai.TenDT ?? DBNull.Value);
                 da.SelectCommand.Parameters.AddWithValue("@MaGV", (object)deTai.MaGV ?? DBNull.Value);
                 da.SelectCommand.Parameters.AddWithValue("@MaSV", (object)deTai.MaSV ?? DBNull.Value);
-                // Add @XepLoai parameter
-                da.SelectCommand.Parameters.AddWithValue("@XepLoai", (object)deTai.XepLoai ?? DBNull.Value);
 
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -112,5 +110,28 @@ namespace DAL
             }
         }
 
+        public bool ExistsMaGV(string maGV)
+        {
+            using (SqlConnection conn = _dbConnection.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM GiangVien WHERE MaGV = @MaGV", conn);
+                cmd.Parameters.AddWithValue("@MaGV", maGV);
+                int count = (int)cmd.ExecuteScalar();
+                return count > 0;
+            }
+        }
+
+        public bool ExistsMaSV(string maSV)
+        {
+            using (SqlConnection conn = _dbConnection.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM SinhVien WHERE MaSV = @MaSV", conn);
+                cmd.Parameters.AddWithValue("@MaSV", maSV);
+                int count = (int)cmd.ExecuteScalar();
+                return count > 0;
+            }
+        }
     }
 }

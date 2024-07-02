@@ -59,8 +59,15 @@ namespace GUI
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            giangVienBLL.DeleteGiangVien(txtMaGV.Text);
-            LoadGiangVien();
+            try
+            {
+                giangVienBLL.DeleteGiangVien(txtMaGV.Text);
+                LoadGiangVien();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
@@ -134,7 +141,6 @@ namespace GUI
 
         private void UpdateButtonStates()
         {
-            // Ensure buttons are always visible
             btnThem.Visible = true;
             btnSua.Visible = true;
             btnXoa.Visible = true;
@@ -143,7 +149,6 @@ namespace GUI
 
             if (currentUser.AccountType == "Sinh viên" || currentUser.AccountType == "Giảng viên")
             {
-                // Disable buttons but keep them visible
                 btnThem.Enabled = false;
                 btnSua.Enabled = false;
                 btnXoa.Enabled = false;
@@ -152,7 +157,6 @@ namespace GUI
             }
             else if (currentUser.AccountType == "Quản trị viên")
             {
-                // Enable buttons for admin
                 btnThem.Enabled = true;
                 btnSua.Enabled = true;
                 btnXoa.Enabled = true;

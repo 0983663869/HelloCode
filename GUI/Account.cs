@@ -139,7 +139,8 @@ namespace GUI
             btnLamMoi.Visible = true;
             btnTimKiem.Visible = true;
 
-/*            if (currentUser.AccountType == "Sinh viên" || currentUser.AccountType == "Giảng viên")
+/*          
+            if (currentUser.AccountType == "Sinh viên" || currentUser.AccountType == "Giảng viên")
             {
                 // Disable buttons but keep them visible
                 btnSua.Enabled = false;

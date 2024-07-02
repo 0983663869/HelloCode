@@ -26,7 +26,7 @@ namespace GUI
         {
             InitializeComponent();
             leftBorderBtn = new Panel();
-            leftBorderBtn.Size = new Size(7, 60);
+            leftBorderBtn.Size = new Size(7, 55);
             panelMenu.Controls.Add(leftBorderBtn);
             this.Text = string.Empty;
             this.ControlBox = false;
@@ -231,10 +231,10 @@ namespace GUI
             {
                 btnSinhVien.Enabled = true;
                 btnDeTai.Enabled = true;
+                btnKhoa.Enabled = true;
 
                 // Disable other buttons
                 btnGiangVien.Enabled = false;
-                btnKhoa.Enabled = false;
                 btnTaiKhoan.Enabled = false;
             }
             else if (currentUser.AccountType == "Giảng viên")

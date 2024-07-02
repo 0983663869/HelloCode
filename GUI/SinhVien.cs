@@ -15,9 +15,7 @@ namespace GUI
     public partial class SinhVien : Form
     {
         private SinhVienBLL sinhVienBLL;
-
         private AccountDTO currentUser;
-
         private string originalMaSV;
         private string originalDienThoai;
         private string originalEmail;
@@ -86,8 +84,15 @@ namespace GUI
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            sinhVienBLL.DeleteSinhVien(txtMaSV.Text);
-            LoadSinhVien();
+            try
+            {
+                sinhVienBLL.DeleteSinhVien(txtMaSV.Text);
+                LoadSinhVien();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
@@ -125,7 +130,6 @@ namespace GUI
                 originalEmail = row.Cells["Email"].Value.ToString();
             }
         }
-        
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
@@ -143,11 +147,9 @@ namespace GUI
             dataGridView1.DataSource = dt;
         }
 
-        // =================================================
-
         private void UpdateButtonStates()
         {
-            // Ensure buttons are always visible
+            // Giữ các nút luôn hiển thị
             btnThem.Visible = true;
             btnSua.Visible = true;
             btnXoa.Visible = true;
@@ -156,7 +158,7 @@ namespace GUI
 
             if (currentUser.AccountType == "Sinh viên" || currentUser.AccountType == "Giảng viên")
             {
-                // Disable buttons but keep them visible
+                // Vô hiệu hóa các nút nhưng vẫn hiển thị chúng
                 btnThem.Enabled = false;
                 btnSua.Enabled = false;
                 btnXoa.Enabled = false;
@@ -165,7 +167,7 @@ namespace GUI
             }
             else if (currentUser.AccountType == "Quản trị viên")
             {
-                // Enable buttons for admin
+                // Bật nút cho quản trị viên
                 btnThem.Enabled = true;
                 btnSua.Enabled = true;
                 btnXoa.Enabled = true;

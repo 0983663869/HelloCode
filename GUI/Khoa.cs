@@ -119,31 +119,29 @@ namespace GUI
             dataGridView1.DataSource = dt;
         }
 
-        // ==============================================
-
         private void UpdateButtonStates()
         {
-            // Ensure buttons are always visible
+            // Đảm bảo các nút luôn hiển thị
             btnThem.Visible = true;
             btnSua.Visible = true;
             btnXoa.Visible = true;
             btnLamMoi.Visible = true;
             btnTimKiem.Visible = true;
 
-/*            if (currentUser.AccountType == "Sinh viên" || currentUser.AccountType == "Giảng viên")
+            if (currentUser.AccountType == "Sinh viên" || currentUser.AccountType == "Giảng viên")
             {
-                // Disable buttons but keep them visible
+                // Vô hiệu hóa các nút nhưng vẫn hiển thị chúng
                 btnThem.Enabled = false;
                 btnSua.Enabled = false;
                 btnXoa.Enabled = false;
-                btnLamMoi.Enabled = false;
+                btnLamMoi.Enabled = true;
                 btnTimKiem.Enabled = true;
             }
             else 
-*/
+
             if (currentUser.AccountType == "Quản trị viên")
             {
-                // Enable buttons for admin
+                // Bật nút cho quản trị viên
                 btnThem.Enabled = true;
                 btnSua.Enabled = true;
                 btnXoa.Enabled = true;

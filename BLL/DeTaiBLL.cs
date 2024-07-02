@@ -25,6 +25,16 @@ namespace BLL
 
         public void AddDeTai(DeTaiDTO deTai)
         {
+            // Validate MaGV and MaSV
+            if (!deTaiDAL.ExistsMaGV(deTai.MaGV))
+            {
+                throw new Exception("Mã giảng viên không tồn tại trong bảng Giảng Viên.");
+            }
+            if (!deTaiDAL.ExistsMaSV(deTai.MaSV))
+            {
+                throw new Exception("Mã sinh viên không tồn tại trong bảng Sinh Viên.");
+            }
+
             // Kiểm tra xem MaDT đã tồn tại chưa
             if (deTaiDAL.ExistsMaDT(deTai.MaDT))
             {
@@ -36,6 +46,16 @@ namespace BLL
 
         public void UpdateDeTai(DeTaiDTO deTai, string originalMaDT)
         {
+            // Validate MaGV and MaSV
+            if (!deTaiDAL.ExistsMaGV(deTai.MaGV))
+            {
+                throw new Exception("Mã giảng viên không tồn tại trong bảng Giảng Viên.");
+            }
+            if (!deTaiDAL.ExistsMaSV(deTai.MaSV))
+            {
+                throw new Exception("Mã sinh viên không tồn tại trong bảng Sinh Viên.");
+            }
+
             deTaiDAL.UpdateDeTai(deTai, originalMaDT);
         }
 
