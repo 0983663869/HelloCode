@@ -5,7 +5,20 @@ using System;
 
 namespace DAL
 {
-    public class AccountDAL
+    public interface IAccountRepository
+    {
+        DataTable GetUserByUsernameAndPassword(string username, string password);
+        bool InsertUser(AccountDTO user);
+        bool CheckUsernameExists(string username);
+        bool CheckEmailExists(string email);
+        bool CheckDuplicateEmail(int id, string email);
+        bool CheckDuplicateUsername(int id, string username);
+        bool UpdateAccount(AccountDTO account);
+        bool DeleteAccount(int id);
+        DataTable SearchAccount(AccountDTO account);
+    }
+
+    public class AccountDAL : IAccountRepository
     {
         private readonly DatabaseConnection _dbConnection;
 
@@ -87,20 +100,59 @@ namespace DAL
             }
         }
 
-        // Cập nhật thông tin tài khoản
+        // Kiểm tra email trùng lặp khi cập nhật
+        public bool CheckDuplicateEmail(int id, string email)
+        {
+            using (SqlConnection connect = _dbConnection.GetConnection())
+            {
+                string checkDuplicateEmail = "SELECT * FROM Account WHERE email = @mail AND id != @id";
+                using (SqlCommand cmd = new SqlCommand(checkDuplicateEmail, connect))
+                {
+                    cmd.Parameters.AddWithValue("@mail", email);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table.Rows.Count > 0;
+                }
+            }
+        }
+
+        // Kiểm tra username trùng lặp khi cập nhật
+        public bool CheckDuplicateUsername(int id, string username)
+        {
+            using (SqlConnection connect = _dbConnection.GetConnection())
+            {
+                string checkDuplicateUsername = "SELECT * FROM Account WHERE username = @username AND id != @id";
+                using (SqlCommand cmd = new SqlCommand(checkDuplicateUsername, connect))
+                {
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table.Rows.Count > 0;
+                }
+            }
+        }
+
+        // Cập nhật tài khoản
         public bool UpdateAccount(AccountDTO account)
         {
-            using (SqlConnection conn = _dbConnection.GetConnection())
+            using (SqlConnection connect = _dbConnection.GetConnection())
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("UPDATE Account SET email = @Email, username = @Username, password = @Password, accounttype = @AccountType WHERE id = @Id", conn))
+                string updateData = "UPDATE Account SET email = @mail, username = @username, password = @pass, accounttype = @accounttype WHERE id = @id";
+                using (SqlCommand cmd = new SqlCommand(updateData, connect))
                 {
-                    cmd.Parameters.AddWithValue("@Email", account.Email);
-                    cmd.Parameters.AddWithValue("@Username", account.Username);
-                    cmd.Parameters.AddWithValue("@Password", account.Password);
-                    cmd.Parameters.AddWithValue("@AccountType", account.AccountType);
-                    cmd.Parameters.AddWithValue("@Id", account.Id);
-                    return cmd.ExecuteNonQuery() > 0;
+                    cmd.Parameters.AddWithValue("@mail", account.Email);
+                    cmd.Parameters.AddWithValue("@username", account.Username);
+                    cmd.Parameters.AddWithValue("@pass", account.Password);
+                    cmd.Parameters.AddWithValue("@accounttype", account.AccountType);
+                    cmd.Parameters.AddWithValue("@id", account.Id);
+
+                    connect.Open();
+                    int result = cmd.ExecuteNonQuery();
+                    return result > 0;
                 }
             }
         }
@@ -108,65 +160,61 @@ namespace DAL
         // Xóa tài khoản
         public bool DeleteAccount(int id)
         {
-            using (SqlConnection conn = _dbConnection.GetConnection())
+            using (SqlConnection connect = _dbConnection.GetConnection())
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("DELETE FROM Account WHERE id = @Id", conn))
+                string deleteData = "DELETE FROM Account WHERE id = @id";
+                using (SqlCommand cmd = new SqlCommand(deleteData, connect))
                 {
-                    cmd.Parameters.AddWithValue("@Id", id);
-                    return cmd.ExecuteNonQuery() > 0;
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    connect.Open();
+                    int result = cmd.ExecuteNonQuery();
+                    return result > 0;
                 }
             }
         }
 
-        // Tìm kiếm tài khoản theo điều kiện
+        // Tìm kiếm tài khoản
         public DataTable SearchAccount(AccountDTO account)
         {
-            using (SqlConnection conn = _dbConnection.GetConnection())
-            {
-                SqlDataAdapter da = new SqlDataAdapter("SearchAccount", conn);
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.SelectCommand.Parameters.AddWithValue("@Email", (object)account.Email ?? DBNull.Value);
-                da.SelectCommand.Parameters.AddWithValue("@Username", (object)account.Username ?? DBNull.Value);
-                da.SelectCommand.Parameters.AddWithValue("@AccountType", (object)account.AccountType ?? DBNull.Value);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                return dt;
-            }
-        }
-
-        // Kiểm tra email trùng lặp trừ id hiện tại
-        public bool CheckDuplicateEmail(int id, string email)
-        {
             using (SqlConnection connect = _dbConnection.GetConnection())
             {
-                string checkEmail = "SELECT COUNT(*) FROM Account WHERE email = @mail AND id != @id";
-                using (SqlCommand cmd = new SqlCommand(checkEmail, connect))
+                string searchQuery = "SELECT * FROM Account WHERE 1=1";
+                if (!string.IsNullOrEmpty(account.Email))
                 {
-                    cmd.Parameters.AddWithValue("@mail", email);
-                    cmd.Parameters.AddWithValue("@id", id);
-                    connect.Open();
-                    int count = (int)cmd.ExecuteScalar();
-                    return count > 0;
+                    searchQuery += " AND email LIKE '%' + @mail + '%'";
                 }
-            }
-        }
-
-        // Kiểm tra username trùng lặp trừ id hiện tại
-        public bool CheckDuplicateUsername(int id, string username)
-        {
-            using (SqlConnection connect = _dbConnection.GetConnection())
-            {
-                string checkUsername = "SELECT COUNT(*) FROM Account WHERE username = @username AND id != @id";
-                using (SqlCommand cmd = new SqlCommand(checkUsername, connect))
+                if (!string.IsNullOrEmpty(account.Username))
                 {
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@id", id);
-                    connect.Open();
-                    int count = (int)cmd.ExecuteScalar();
-                    return count > 0;
+                    searchQuery += " AND username LIKE '%' + @username + '%'";
+                }
+                if (!string.IsNullOrEmpty(account.AccountType))
+                {
+                    searchQuery += " AND accounttype LIKE '%' + @accounttype + '%'";
+                }
+
+                using (SqlCommand cmd = new SqlCommand(searchQuery, connect))
+                {
+                    if (!string.IsNullOrEmpty(account.Email))
+                    {
+                        cmd.Parameters.AddWithValue("@mail", account.Email);
+                    }
+                    if (!string.IsNullOrEmpty(account.Username))
+                    {
+                        cmd.Parameters.AddWithValue("@username", account.Username);
+                    }
+                    if (!string.IsNullOrEmpty(account.AccountType))
+                    {
+                        cmd.Parameters.AddWithValue("@accounttype", account.AccountType);
+                    }
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
                 }
             }
         }
     }
 }
+

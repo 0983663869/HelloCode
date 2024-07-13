@@ -6,9 +6,24 @@ using System;
 
 namespace BLL
 {
-    public class AccountBLL
+    public interface IAccountService
     {
-        private AccountDAL userDAL = new AccountDAL();
+        AccountDTO Login(string username, string password);
+        bool Register(AccountDTO user);
+        void UpdateAccount(AccountDTO account);
+        void DeleteAccount(int id);
+        DataTable SearchAccount(AccountDTO account);
+        bool IsValidEmail(string email);
+    }
+
+    public class AccountBLL : IAccountService
+    {
+        private readonly IAccountRepository userDAL;
+
+        public AccountBLL()
+        {
+            userDAL = new AccountDAL();
+        }
 
         // Đăng nhập
         public AccountDTO Login(string username, string password)
